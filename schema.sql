@@ -1,5 +1,6 @@
 /* Database schema to keep the structure of entire database. */
 
+/*Create Table*/
 CREATE TABLE animals (
     id INT GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(100) NOT NULL,
@@ -9,3 +10,6 @@ CREATE TABLE animals (
     weight_kg DECIMAL NOT NULL,
     PRIMARY KEY(id)
 );
+
+/*Add a column species on animals table*/
+ALTER TABLE animals ADD COLUMN species VARCHAR(50);
