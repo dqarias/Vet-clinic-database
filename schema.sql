@@ -58,3 +58,47 @@ ADD CONSTRAINT fk_owners
 FOREIGN KEY (owners_id)
 REFERENCES owners (id)
 ON DELETE CASCADE;
+
+/*Milestone 4*/
+
+-- Create a table named vets
+
+CREATE TABLE vets (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(50) NOT NULL,
+    age INT NOT NULL,
+    date_of_graduation DATE,
+    PRIMARY KEY (id)
+);
+
+-- Create a "join table" called specializations
+
+CREATE TABLE specializations (
+    species_id INT,
+    vets_id INT,
+    CONSTRAINT fk_species
+    FOREIGN KEY (species_id)
+    REFERENCES species (id)
+    ON DELETE CASCADE,
+    CONSTRAINT fk_vets
+    FOREIGN KEY (vets_id)
+    REFERENCES vets (id)
+    ON DELETE CASCADE
+);
+
+-- Create a "join table" called visits to handle this relationship
+
+CREATE TABLE visits (
+    animals_id INT,
+    vets_id INT,
+    date_of_visit DATE,
+    CONSTRAINT fk_animals
+    FOREIGN KEY (animals_id)
+    REFERENCES animals (id)
+    ON DELETE CASCADE,
+    CONSTRAINT fk_vets
+    FOREIGN KEY (vets_id)
+    REFERENCES vets (id)
+    ON DELETE CASCADE
+);
+
