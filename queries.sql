@@ -135,9 +135,10 @@ GROUP BY vets.name;
 
 -- List all vets and their specialties, including vets with no specialties.
 SELECT vets.name, species.name 
-FROM vets
-LEFT JOIN specializations ON vets.id = specializations.vets_id
-LEFT JOIN species ON specializations.species_id = species.id;
+FROM specializations
+RIGHT JOIN vets ON vets_id = vets.id 
+LEFT JOIN species ON species_id = species.id
+GROUP BY vets.name, species.name;
 
 -- List all animals that visited Stephanie Mendez between April 1st and August 30th, 2020.
 SELECT vets.name, animals.name
@@ -167,7 +168,7 @@ SELECT animals.*, vets.*, date_of_visit
 FROM visits
 INNER JOIN vets ON vets_id = vets.id
 INNER JOIN animals ON animals_id = animals.id
-ORDER BY date_of_visit DESC LIMIT 5;
+ORDER BY date_of_visit DESC LIMIT 1;
 
 -- How many visits were with a vet that did not specialize in that animal's species?
 SELECT count(visits.vets_id)
