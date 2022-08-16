@@ -102,3 +102,9 @@ CREATE TABLE visits (
     ON DELETE CASCADE
 );
 
+/*Milestone 4*/
+
+-- Performance audit for: EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
+CREATE INDEX animals_asc ON visits(animals_id ASC);
+
+
