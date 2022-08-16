@@ -108,3 +108,8 @@ CREATE TABLE visits (
 CREATE INDEX animals_asc ON visits(animals_id ASC);
 
 
+-- Performance audit for: EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
+CREATE INDEX vets_asc ON visits(vets_id ASC);
+
+-- Performance audit for: EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
+CREATE INDEX owners_asc ON visits(vets_id DESC);
